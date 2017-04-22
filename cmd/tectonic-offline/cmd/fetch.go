@@ -1,20 +1,45 @@
 package cmd
 
 import (
-	"fmt"
+	"github.com/alekssaul/tectonic-offline/pkg/spec"
+	//"github.com/alekssaul/tectonic-offline/pkg/docker"
 	"github.com/spf13/cobra"
+	"log"
+	"fmt"
+	"path/filepath"
 )
 
-// parseCmd represents the version command
-var parseCmd = &cobra.Command{
-	Use:   "parse",
-	Short: "Parses Tectonic-Installer config variable file",
+var fetchCmd = &cobra.Command{
+	Use:   "fetch",
+	Short: "Fetches Containers in use by Tectonic-Installer",
 	Run: func(cmd *cobra.Command, args []string) {
-		
-		fmt.Println("Tectonic-Offline Version: v0.0.1")
+		FetchDockerImages(cfgFile, tectonicImagesVar)
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(parseCmd)
+	RootCmd.AddCommand(fetchCmd)
+	fetchCmd.PersistentFlags().StringVarP(&cfgFile, "config", "", "config.tf", "Path to config.tf file")
+	fetchCmd.PersistentFlags().StringVarP(&tectonicImagesVar, "imagevar", "", "tectonic_container_images", "Tectonic Images Variable used in TFVars File")
+}
+
+func FetchDockerImages(cfgFile string, tectonicImagesVar string) {
+	tfvarsfile, err := filepath.Abs(cfgFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	v, err := spec.TerraformConfig(tfvarsfile)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	images:= spec.TectonicImages(v, tectonicImagesVar)
+	tectonicversion := spec.TectonicVersion(v)
+
+	fmt.Println("Tectonic Version: " , tectonicversion)
+	for i := range images {
+		fmt.Println("Fetching : ", images[i])
+	}
+	
 }

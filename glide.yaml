@@ -3,8 +3,13 @@ import:
 - package: github.com/hashicorp/hcl
 - package: github.com/spf13/cobra
 - package: github.com/spf13/viper
-- package: github.com/heroku/docker-registry-client/registry
-- package: github.com/docker/distribution/digest
-- package: github.com/docker/distribution/manifest
+- package: github.com/heroku/docker-registry-client
+  subpackages:
+  - registry
+- package: github.com/docker/distribution
+  version: ^2.6.1
+  subpackages:
+  - digest
+  - manifest
 - package: github.com/docker/libtrust
-- package: github.com/hashicorp/hcl/parser
+- package: github.com/golang/glog
