@@ -1,0 +1,10 @@
+package: github.com/alekssaul/tectonic-offline
+import:
+- package: github.com/hashicorp/hcl
+- package: github.com/spf13/cobra
+- package: github.com/spf13/viper
+- package: github.com/heroku/docker-registry-client/registry
+- package: github.com/docker/distribution/digest
+- package: github.com/docker/distribution/manifest
+- package: github.com/docker/libtrust
+- package: github.com/hashicorp/hcl/parser
