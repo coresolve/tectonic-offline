@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/alekssaul/tectonic-offline/pkg/spec"
 	"github.com/spf13/cobra"
-	"log"
 	"fmt"
 	"path/filepath"
 )
@@ -25,14 +24,10 @@ func init() {
 func ParseTerraformTFVARS(cfgFile string, tectonicImagesVar string) {
 
 	tfvarsfile, err := filepath.Abs(cfgFile)
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
 
 	v, err := spec.TerraformConfig(tfvarsfile)
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
 
 	images:= spec.TectonicImages(v, tectonicImagesVar)
 	tectonicversion := spec.TectonicVersion(v)

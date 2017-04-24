@@ -3,13 +3,16 @@ package cmd
 import (
 	"fmt"
 	"os"
-
+	"log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var cfgFile string
 var tectonicImagesVar string
+var coreospullsecret string
+var namespace string
+var offlinezip string
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
@@ -38,6 +41,9 @@ func initConfig() {
 	if tectonicImagesVar != "" { 
 		viper.SetConfigFile(tectonicImagesVar)
 	}
+	if coreospullsecret != "" { 
+		viper.SetConfigFile(coreospullsecret)
+	}
 
 	viper.SetConfigName("config") // name of config file (without extension)
 	viper.AddConfigPath(".")               // adding home directory as first search path
@@ -47,4 +53,10 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
+}
+
+func check(e error) {
+    if e != nil {
+        log.Fatal(e)
+    }
 }

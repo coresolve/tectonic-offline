@@ -1,5 +1,5 @@
-hash: 9728fd6d91013c7f936c4bbcad38c168db6667b7f3e777c1450bbff456e467c7
-updated: 2017-04-22T14:08:56.423776126-04:00
+hash: 310f81392e5cf9813d5a8a03a249dc7f9f5ff5b459990cfdf60e350328a77912
+updated: 2017-04-23T18:36:56.690351966-04:00
 imports:
 - name: github.com/docker/distribution
   version: a25b9ef0c9fe242ac04bb20d3a028442b7d266b6
@@ -11,6 +11,25 @@ imports:
   - manifest/schema2
   - reference
   - uuid
+- name: github.com/docker/docker
+  version: 88862e707affccf9c46347361689b2ffef39dc5c
+  subpackages:
+  - api/types
+  - api/types/blkiodev
+  - api/types/container
+  - api/types/filters
+  - api/types/mount
+  - api/types/network
+  - api/types/registry
+  - api/types/strslice
+  - api/types/swarm
+  - api/types/versions
+- name: github.com/docker/go-connections
+  version: f549a9393d05688dff0992ef3efd8bbe6c628aeb
+  subpackages:
+  - nat
+- name: github.com/docker/go-units
+  version: 0bbddae09c5a5419a8c6dcdd7ff90da3d450393b
 - name: github.com/docker/libtrust
   version: aabc10ec26b754e797f9028f4589c5b7bd90dc20
 - name: github.com/fsnotify/fsnotify
@@ -18,9 +37,9 @@ imports:
 - name: github.com/golang/glog
   version: 23def4e6c14b4da8ac2ed8007337bc5eb5007998
 - name: github.com/gorilla/context
-  version: 14f550f51af52180c2eefed15e5fd18d63c0a64a
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/mux
-  version: e444e69cbd2e2e3e0749a2f3c717cec491552bbf
+  version: 0a192a193177452756c362c20087ddafcf6829c4
 - name: github.com/hashicorp/hcl
   version: 630949a3c5fa3c613328e1b8256052cbc2327c9b
   subpackages:
@@ -42,14 +61,18 @@ imports:
   version: 51463bfca2576e06c62a8504b5c0f06d61312647
 - name: github.com/mitchellh/mapstructure
   version: 53818660ed4955e899c0bcafa97299a388bd7c8e
+- name: github.com/moby/moby
+  version: c264aefdac2d0698df62d203455fcee83e9fd7ee
+  subpackages:
+  - cli/config/configfile
 - name: github.com/pelletier/go-buffruneio
   version: c37440a7cf42ac63b919c752ca73a85067e05992
 - name: github.com/pelletier/go-toml
   version: fe206efb84b2bc8e8cfafe6b4c1826622be969e3
+- name: github.com/pkg/errors
+  version: ff09b135c25aae272398c51a07235b90a75aa4f0
 - name: github.com/Sirupsen/logrus
-  version: 55eb11d21d2a31a3cc93838241d04800f52e823d
-  subpackages:
-  - formatters/logstash
+  version: 3ec0642a7fb6488f65b06f9040adc67e3990296a
 - name: github.com/spf13/afero
   version: 9be650865eab0c12963d8753212f4f9c66cdcf12
   subpackages:
@@ -65,14 +88,9 @@ imports:
 - name: github.com/spf13/viper
   version: 5ed0fc31f7f453625df314d8e66b9791e8d13003
 - name: golang.org/x/net
-  version: 4876518f9e71663000c348837735820161a42df7
+  version: a333c534c871727fb95745870e8b98a69447f2ce
   subpackages:
   - context
-  - context/ctxhttp
-  - http2
-  - http2/hpack
-  - internal/timeseries
-  - trace
 - name: golang.org/x/sys
   version: f3918c30c5c2cb527c0b071a27c35120a6c0719a
   subpackages:
